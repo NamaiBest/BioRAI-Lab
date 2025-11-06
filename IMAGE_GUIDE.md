@@ -1,4 +1,4 @@
-# Image Placement Guide - BioRAI Lab Website
+# Image Placement Guide - EmPACT Lab Website
 
 ## Where to Place Your Images
 

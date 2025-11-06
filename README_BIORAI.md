@@ -1,7 +1,7 @@
-# BioRAI Lab Website - NTU New Website
+# EmPACT Lab Website - NTU New Website
 
 ## Overview
-This is the redesigned website for the Bio-inspired AI and Robotics (BioRAI) Lab at Nanyang Technological University (NTU), Singapore. The website has been built using the educational template and customized with content from the lab's research and activities.
+This is the redesigned website for the Embodied Perception and Interaction Lab (EmPACT) Lab at Nanyang Technological University (NTU), Singapore. The website has been built using the educational template and customized with content from the lab's research and activities.
 
 ## Folder Structure
 - **NTU new website/** - Main website folder (renamed from "learn-educational-free-responsive-web-template")
@@ -52,12 +52,12 @@ The contact page has been updated with the following information:
 3. Update news.html with more recent lab activities
 4. Add more detailed research project descriptions
 5. Replace placeholder images in assets/images with actual lab photos
-6. Update the logo in assets/images/logo.png with the BioRAI Lab logo
+6. Update the logo in assets/images/logo.png with the EmPACT Lab logo
 7. Test all forms and ensure they connect to proper backends
 8. Add analytics and tracking if needed
 
 ## Files Modified
-- index.html - Updated with BioRAI Lab content
+- index.html - Updated with EmPACT Lab content
 - contact.html - Updated with lab contact information
 - research.html - Created new with research areas
 - people.html - Created new for team members
@@ -67,7 +67,7 @@ The contact page has been updated with the following information:
 
 ## Template Credits
 Original template: Learn - Free Educational Responsive Web Template by WebThemez
-Customized for: Bio-inspired AI and Robotics (BioRAI) Lab, NTU Singapore
+Customized for: Embodied Perception and Interaction Lab (EmPACT) Lab, NTU Singapore
 
 ## Date Created
 October 31, 2025
