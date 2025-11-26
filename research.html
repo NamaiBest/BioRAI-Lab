@@ -50,97 +50,145 @@
 			<div class="row">
 				<div class="col-sm-8">
 					<h1>Our Research Areas</h1>
-					<p>We are focusing on making multi-modal intelligent systems with AI!</p>
+					<p>We focus on human-like perception and interaction for embodied intelligent systems!</p>
 				</div>
 			</div>
 		</div>
 	</header>
-	<div id="courses">
-		<section class="container">
-			<h3>Vision and Imaging Research</h3>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="featured-box">
-						<i class="fa fa-video-camera fa-2x"></i>
-						<div class="text">
-							<h3>Bio-inspired Camera-based Vision</h3>
-							High-speed and HDR vision problems using event cameras and bio-inspired approaches for next-generation visual sensing systems.
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="featured-box">
-						<i class="fa fa-globe fa-2x"></i>
-						<div class="text">
-							<h3>360 Camera-based Vision</h3>
-							Digital human, neural rendering, and omnidirectional image understanding for immersive visual experiences.
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="featured-box">
-						<i class="fa fa-eye fa-2x"></i>
-						<div class="text">
-							<h3>High-level Vision Problems</h3>
-							Semantic segmentation, 2D/3D object detection and recognition for intelligent scene understanding.
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-md-4">
-					<div class="featured-box">
-						<i class="fa fa-image fa-2x"></i>
-						<div class="text">
-							<h3>Low-level Vision Problems</h3>
-							HDR imaging, image/video restoration and enhancement techniques for improved visual quality.
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="featured-box">
-						<i class="fa fa-cube fa-2x"></i>
-						<div class="text">
-							<h3>3D Scene Understanding and SLAM</h3>
-							Robotics, XR, HCI, and simultaneous localization and mapping for spatial intelligence.
-						</div>
-					</div>
-				</div>
-				<div class="col-md-4">
-					<div class="featured-box">
-						<i class="fa fa-cubes fa-2x"></i>
-						<div class="text">
-							<h3>NeRF-based 3D Reconstruction</h3>
-							Domain adaptation, knowledge transfer, and neural radiance fields for 3D scene representation.
-						</div>
-					</div>
-				</div>
-			</div>
 
-		</section>
+	<script>
+		// ==========================================================
+		// RESEARCH DATABASE - Edit this array to add/remove/update research areas
+		// ==========================================================
+		const researchData = {
+			sections: [
+				{
+					title: "Neuro- and Physics-inspired Sensing and Perception",
+					areas: [
+						{
+							icon: "fa-video-camera",
+							title: "Bio-inspired Sensing",
+							description: "We explore how to develop human-like sensing (camera) systems and AI algorithms for embodied agents!"
+						},
+						{
+							icon: "fa-globe",
+							title: "Physics-informed Sensing",
+							description: "We explore how to develop human-like e-skin to sense multi-physics from environment for self-awareness of embodied agents!"
+						},
+						{
+							icon: "fa-eye",
+							title: "Multi-modal Perception",
+							description: "Semantic segmentation, 2D/3D object detection for intelligent scene understanding."
+						}
+					]
+				},
+				{
+					title: "Spatial Intelligence and Edge AI",
+					areas: [
+						{
+							icon: "fa-cube",
+							title: "Spatial Reasoning, Memory and Mapping",
+							description: "Spatial understanding, reasoning, memory and mapping for embodied agents."
+						},
+						{
+							icon: "fa-cubes",
+							title: "Neuromorphic Computing and Edge AI",
+							description: "Brain-inspired computing, edge AI solutions for robotics."
+						}
+					]
+				},
+				{
+					title: "Robot Learning and Human-Agent Interaction",
+					areas: [
+						{
+							icon: "fa-cog",
+							title: "Robot Learning",
+							description: "Lifelong learning, data-efficient learning, knowledge Transformers"
+						},
+						{
+							icon: "fa-users",
+							title: "Human-agent Interaction",
+							description: "Self-sensation and behavior modeling, Human-aligned robotic actions."
+						}
+					]
+				}
+			]
+		};
+
+		// Function to create a research area card
+		function createResearchCard(area) {
+			return `
+				<div class="col-md-4" style="margin-bottom: 25px;">
+					<div style="background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); border-radius: 12px; padding: 30px; height: 100%; box-shadow: 0 2px 10px rgba(0,0,0,0.08); border: 1px solid #e8e8e8; transition: all 0.3s;" onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='0 4px 15px rgba(0,0,0,0.12)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 10px rgba(0,0,0,0.08)';">
+						<div style="text-align: center; margin-bottom: 20px;">
+							<i class="fa ${area.icon}" style="font-size: 48px; color: #dc2626; line-height: 1;"></i>
+						</div>
+						<h3 style="color: #1a1a1a; font-weight: 600; margin: 0 0 15px 0; font-size: 18px; text-align: center;">${area.title}</h3>
+						<div style="width: 40px; height: 3px; background: linear-gradient(to right, #dc2626, #ef4444); margin: 0 auto 15px auto; border-radius: 2px;"></div>
+						<p style="color: #666; line-height: 1.7; text-align: center; margin: 0; font-size: 14px;">${area.description}</p>
+					</div>
+				</div>
+			`;
+		}
+
+		// Function to generate all research sections
+		function generateResearchHTML() {
+			const container = document.getElementById('research-container');
+			let html = '';
+			
+			researchData.sections.forEach((section, index) => {
+				// First section uses different structure
+				if (index === 0) {
+					html += `
+						<div id="courses">
+							<section class="container">
+								<h3 style="color: #1a1a1a; font-weight: 600; margin-bottom: 30px;">${section.title}</h3>
+								<div class="row">
+					`;
+					section.areas.forEach(area => {
+						html += createResearchCard(area);
+					});
+					html += `
+								</div>
+							</section>
+						</div>
+					`;
+				} else {
+					// Other sections use container structure
+					html += `
+						<div class="container">
+							<section class="row">
+								<div class="col-md-12">
+									<h3 style="margin-top: 40px; margin-bottom: 30px; color: #1a1a1a; font-weight: 600;">${section.title}</h3>
+								</div>
+					`;
+					section.areas.forEach(area => {
+						html += createResearchCard(area);
+					});
+					html += `
+							</section>
+						</div>
+					`;
+				}
+			});
+			
+			container.innerHTML = html;
+		}
+
+		// Load research areas when page loads
+		document.addEventListener('DOMContentLoaded', generateResearchHTML);
+	</script>
+
+	<div id="research-container">
+		<!-- Research areas will be automatically generated here -->
 	</div>
-	<!-- container -->
-	<div class="container">
-		<div class="row">
-			<!-- Article content -->
-			<section class="col-sm-12 maincontent">
-				<h3>AI and Machine Learning</h3>
-				<p>
-					Our lab focuses on cutting-edge learning methods in computer vision, including Generative Adversarial Networks (GANs), self-supervised and semi-supervised learning approaches, and transfer learning techniques. We develop novel algorithms that enable machines to learn more efficiently with less labeled data, bringing us closer to human-level visual intelligence.
-				</p>
-				<h3>Computer Vision for AR/Metaverse</h3>
-				<p>We explore avatar generation, scene modeling and understanding for extended reality applications. Our research in multi-modal AIGC (AI Generated Content) for the Metaverse includes depth estimation, motion estimation and compensation in virtual environments, enabling more realistic and immersive digital experiences.</p>
-			</section>
-		</div>
-	</div>
-	<!-- /container -->
 
 	
 	<footer id="footer">
 		<div class="container">
 			<div class="social text-center">
 				<a href="https://www.linkedin.com/in/addison-lin-wang-62542b222/"><i class="fa fa-linkedin"></i></a>
-				<a href="https://github.com/vlislab22"><i class="fa fa-github"></i></a>
+				<a href="https://github.com/empactlab"><i class="fa fa-github"></i></a>
 			</div>
 
 			<div class="clear"></div>
@@ -166,7 +214,7 @@
 					<div class="col-md-6 panel">
 						<div class="panel-body">
 							<p class="text-right">
-								Copyright &copy; 2024 EmPACT Lab, NTU Singapore
+								Copyright &copy; 2025 Embodied Perception and Interaction Lab (EmPACT) Lab, NTU Singapore
 							</p>
 						</div>
 					</div>

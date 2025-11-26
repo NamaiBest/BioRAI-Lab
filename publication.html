@@ -50,37 +50,46 @@
 	-->
 
 	<script>
-		// Publications Database - EDIT THIS SECTION ONLY
+		// ==========================================================
+		// PUBLICATIONS DATABASE - Edit this array to add/remove/update publications
+		// ==========================================================
 		const publicationsData = [
+			// 2026 Publications
+			{ date: "2026-01", venue: "AAAI 2026", title: "3 papers accepted to AAAI 2026", authors: "EmPACT Lab Team", link: "#", count: 3 },
+			
+			// 2025 Publications
+			{ date: "2025-12", venue: "Pattern Recognition", title: "Research on semantic segmentation", authors: "EmPACT Lab Team", link: "#" },
+			{ date: "2025-11", venue: "IEEE TMM", title: "Multimedia processing research", authors: "EmPACT Lab Team", link: "#" },
+			{ date: "2025-11", venue: "IEEE TAI", title: "Artificial intelligence research", authors: "EmPACT Lab Team", link: "#" },
+			{ date: "2025-10", venue: "IEEE TPAMI", title: "3 papers accepted to IEEE TPAMI", authors: "EmPACT Lab Team", link: "#", count: 3 },
+			{ date: "2025-09", venue: "IEEE RAL", title: "5 papers accepted to IEEE RAL", authors: "EmPACT Lab Team", link: "#", count: 5 },
+			{ date: "2025-09", venue: "NeurIPS 2025", title: "3 papers accepted to NeurIPS 2025", authors: "EmPACT Lab Team", link: "#", count: 3 },
+			{ date: "2025-08", venue: "ACM MM 2025", title: "Multi-modal AI research", authors: "EmPACT Lab Team", link: "#" },
+			{ date: "2025-07", venue: "ICCV 2025", title: "Omnidirectional sensing research", authors: "EmPACT Lab Team", link: "#" },
+			{ date: "2025-07", venue: "IROS 2025", title: "2 papers accepted to IROS 2025", authors: "EmPACT Lab Team", link: "#", count: 2 },
+			{ date: "2025-06", venue: "CVPR 2025", title: "3 papers accepted to CVPR 2025", authors: "EmPACT Lab Team", link: "#", count: 3 },
+			{ date: "2025-05", venue: "ICRA 2025", title: "3 papers accepted to ICRA 2025", authors: "EmPACT Lab Team", link: "#", count: 3 },
+
 			// 2024 Publications
-			{ date: "2024-10", venue: "Pattern Recognition", title: "Distilling efficient Vision Transformers from CNNs for semantic segmentation", authors: "Author A, Author B, Addison Lin Wang", link: "#" },
-			{ date: "2024-09", venue: "NeurIPS 2024", title: "LaSe-E2V: Towards Language-guided Semantic-Aware Event-to-Video Reconstruction", authors: "Author C, Addison Lin Wang", link: "#" },
-			{ date: "2024-08", venue: "ACM MM 2024", title: "A General Framework to Boost 3D GS Initialization for Text-to-3D Generation", authors: "Author D, Author E, Addison Lin Wang", link: "#" },
-			{ date: "2024-07", venue: "ECCV 2024", title: "Multi-Modal Semantic Segmentation with Event Camera", authors: "Author F, Author G, Addison Lin Wang", link: "#" },
-			{ date: "2024-07", venue: "ECCV 2024", title: "360-degree Vision for Autonomous Navigation", authors: "Author H, Addison Lin Wang", link: "#" },
-			{ date: "2024-07", venue: "ECCV 2024", title: "Event-Based Vision for High-Speed Motion Analysis", authors: "Author I, Addison Lin Wang", link: "#" },
-			{ date: "2024-06", venue: "CVPR 2024", title: "Depth Estimation with Event Cameras", authors: "Author J, Author K, Addison Lin Wang", link: "#" },
-			{ date: "2024-06", venue: "CVPR 2024", title: "Semantic Segmentation for Autonomous Driving", authors: "Author L, Addison Lin Wang", link: "#" },
-			{ date: "2024-06", venue: "CVPR 2024", title: "Neural Rendering for 3D Scene Reconstruction", authors: "Author M, Author N, Addison Lin Wang", link: "#" },
-			{ date: "2024-06", venue: "CVPR 2024", title: "Multi-Modal Learning for Robotics", authors: "Author O, Addison Lin Wang", link: "#" },
-			{ date: "2024-05", venue: "ICRA 2024", title: "Vision-Based Robot Navigation in Dynamic Environments", authors: "Author P, Addison Lin Wang", link: "#" },
-			{ date: "2024-05", venue: "ICRA 2024", title: "Event Camera Integration for Robotic Systems", authors: "Author Q, Author R, Addison Lin Wang", link: "#" },
-			{ date: "2024-03", venue: "AAAI 2024", title: "Knowledge Distillation for Efficient Vision Models", authors: "Author S, Addison Lin Wang", link: "#" },
+			{ date: "2024-10", venue: "Pattern Recognition", title: "Semantic segmentation research", authors: "EmPACT Lab Team", link: "#" },
+			{ date: "2024-09", venue: "NeurIPS 2024", title: "2 papers accepted to NeurIPS 2024", authors: "EmPACT Lab Team", link: "#", count: 2 },
+			{ date: "2024-08", venue: "ACM MM 2024", title: "Multimedia research", authors: "EmPACT Lab Team", link: "#" },
+			{ date: "2024-08", venue: "IEEE TPAMI", title: "2 papers accepted to IEEE TPAMI", authors: "EmPACT Lab Team", link: "#", count: 2 },
+			{ date: "2024-07", venue: "ECCV 2024", title: "6 papers accepted to ECCV 2024", authors: "EmPACT Lab Team", link: "#", count: 6 },
+			{ date: "2024-06", venue: "CVPR 2024", title: "8 papers accepted to CVPR 2024", authors: "EmPACT Lab Team", link: "#", count: 8 },
+			{ date: "2024-05", venue: "ICRA 2024", title: "4 papers accepted to ICRA 2024", authors: "EmPACT Lab Team", link: "#", count: 4 },
+			{ date: "2024-04", venue: "IEEE RAL", title: "3 papers accepted to IEEE RAL", authors: "EmPACT Lab Team", link: "#", count: 3 },
 			
 			// 2023 Publications
-			{ date: "2023-10", venue: "ICCV 2023", title: "Panoramic Semantic Segmentation with 360-degree Cameras", authors: "Author T, Addison Lin Wang", link: "#" },
-			{ date: "2023-10", venue: "ICCV 2023", title: "Event-Based Vision for Low-Light Conditions", authors: "Author U, Author V, Addison Lin Wang", link: "#" },
-			{ date: "2023-10", venue: "ICCV 2023", title: "Neural Radiance Fields for Dynamic Scenes", authors: "Author W, Addison Lin Wang", link: "#" },
-			{ date: "2023-06", venue: "CVPR 2023", title: "Unsupervised Domain Adaptation for Semantic Segmentation", authors: "Author X, Addison Lin Wang", link: "#" },
-			{ date: "2023-06", venue: "CVPR 2023", title: "Event Camera Calibration and Reconstruction", authors: "Author Y, Author Z, Addison Lin Wang", link: "#" },
-			{ date: "2023-05", venue: "ICRA 2023", title: "Visual SLAM with Event Cameras", authors: "Author AA, Addison Lin Wang", link: "#" },
-			{ date: "2023-03", venue: "TPAMI", title: "Knowledge Distillation and Student-Teacher Learning for Visual Intelligence", authors: "Author AB, Author AC, Addison Lin Wang", link: "#" },
+			{ date: "2023-10", venue: "ICCV 2023", title: "5 papers accepted to ICCV 2023", authors: "EmPACT Lab Team", link: "#", count: 5 },
+			{ date: "2023-06", venue: "CVPR 2023", title: "4 papers accepted to CVPR 2023", authors: "EmPACT Lab Team", link: "#", count: 4 },
 			
-			// 2022 Publications
-			{ date: "2022-10", venue: "ECCV 2022", title: "HDR Imaging with Deep Learning", authors: "Author AD, Addison Lin Wang", link: "#" },
-			{ date: "2022-06", venue: "CVPR 2022", title: "3D Object Detection from Point Clouds", authors: "Author AE, Author AF, Addison Lin Wang", link: "#" },
-			{ date: "2022-05", venue: "ICRA 2022", title: "Robotic Grasping with Vision Transformers", authors: "Author AG, Addison Lin Wang", link: "#" },
-			{ date: "2022-03", venue: "TPAMI", title: "Deep Learning for HDR Imaging: State-of-the-Art and Future Trends", authors: "Author AH, Addison Lin Wang", link: "#" }
+			// Previous Publications
+			{ date: "2022-10", venue: "ICCV 2022", title: "Computer vision research", authors: "Previous work", link: "#" },
+			{ date: "2022-10", venue: "ECCV 2022", title: "European computer vision research", authors: "Previous work", link: "#" },
+			{ date: "2022-06", venue: "CVPR 2022", title: "Computer vision research", authors: "Previous work", link: "#" },
+			{ date: "2022-03", venue: "IEEE TPAMI", title: "3 papers accepted to IEEE TPAMI", authors: "Previous work", link: "#", count: 3 },
+			{ date: "2021-06", venue: "IEEE RAL", title: "Robotics and automation research", authors: "Previous work", link: "#" }
 		];
 
 		// Group publications by year
@@ -168,7 +177,7 @@
 		<div class="container">
 			<div class="social text-center">
 				<a href="https://www.linkedin.com/in/addison-lin-wang-62542b222/"><i class="fa fa-linkedin"></i></a>
-				<a href="https://github.com/vlislab22"><i class="fa fa-github"></i></a>
+				<a href="https://github.com/empactlab"><i class="fa fa-github"></i></a>
 			</div>
 		</div>
 		<div class="footer2">
@@ -188,7 +197,7 @@
 					</div>
 					<div class="col-md-12 panel">
 						<div class="panel-body">
-							<p class="text-right">Copyright &copy; 2024 EmPACT Lab, NTU Singapore</p>
+							<p class="text-right">Copyright &copy; 2025 Embodied Perception and Interaction Lab (EmPACT) Lab, NTU Singapore</p>
 						</div>
 					</div>
 				</div>
