@@ -9,12 +9,38 @@
 	<link rel="stylesheet" href="assets/css/font-awesome.min.css">
 	<link rel="stylesheet" href="assets/css/bootstrap-theme.css">
 	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- FIX: make team grid use flex so wrapping is clean -->
+	<style>
+		#team-members-container {
+			display: flex;
+			flex-wrap: wrap;
+			margin-left: -15px;   /* match .row gutters */
+			margin-right: -15px;
+		}
+		#team-members-container .col-md-4 {
+			float: none;           /* override Bootstrap float */
+			flex: 0 0 33.3333%;    /* 3 per row */
+			max-width: 33.3333%;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+		#team-members-container .col-md-12 {
+			float: none;
+			flex: 0 0 100%;        /* headings span full width */
+			max-width: 100%;
+			padding-left: 15px;
+			padding-right: 15px;
+		}
+	</style>
 </head>
 <body>
 	<div class="navbar navbar-inverse">
 		<div class="container">
 			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+				</button>
 				<a class="navbar-brand" href="index.html"><img src="assets/images/logo.png" alt="EmPACT Lab"></a>
 			</div>
 			<div class="navbar-collapse collapse">
@@ -51,10 +77,17 @@
 	<script>
 		// People Database - EDIT THIS SECTION ONLY
 		const peopleData = {
+			staff: [
+				{ name: "Gu Zhihao", role: "Postdoc", research: "Vision for Robotics, Computer Vision", image: "Gu Zhihao.jpg", linkedin: "" },
+				{ name: "Liu Mohan", role: "Research Associate", research: "Embodied AI, Robot Learning, Multimodal Learning", image: "Liu Mohan.jpg", linkedin: "https://www.linkedin.com/in/mohan%EF%BC%28lester%EF%BC%89-liu-a26a5a286/" },
+				{ name: "Ankit Kumar Shaw", role: "Research Associate", research: "Multimodal Cognitive Intelligence for human-aligned robot perception, reasoning and manipulation", image: "Ankit Kumar Shaw.jpg", linkedin: "https://www.linkedin.com/in/ankit-kumar-shaw-赜帆-57005413a/" }
+				
+			],
 			phd: [
 				{ name: "ZHANG HAITIAN", role: "PhD", research: "Event-based Vision, Multi-modality", image: "ZHANG HAITIAN.png", linkedin: "" },
 				{ name: "Liu Zinan", role: "PhD", research: "Embodied AI, Knowledge Distillation, Agentic Reasoning", image: "Liu Zinan.jpg", linkedin: "" },
-				{ name: "Nguyen Duy Thai", role: "PhD", research: "3D Perception, Embodied World Model", image: "Nguyen Duy Thai.png", linkedin: "" }
+				{ name: "Nguyen Duy Thai", role: "PhD", research: "3D Perception, Embodied World Model", image: "Nguyen Duy Thai.png", linkedin: "" },
+				{ name: "Jongsung Lee", role: "Visiting PhD", research: "3D Scene Understanding, 360 Image-based Vision", image: "Jongsung Lee.jpg", linkedin: "" }
 			],
 			msc: [
 				{ name: "YU ZE", role: "MSc", research: "Embodied AI, Robot Learning", image: "YU ZE.jpg", linkedin: "" },
@@ -63,15 +96,11 @@
 				{ name: "Dong Ze", role: "MSc", research: "Embodied AI, Large Multimodal Models", image: "Dong Ze.jpg", linkedin: "" },
 				{ name: "Mei Dengchen", role: "MSc", research: "Learning to see and understand the environment in the dark with humanoid robot", image: "Mei Dengchen.jpeg", linkedin: "" },
 				{ name: "Shriram Damodaran", role: "M.Eng", research: "Robotics, 3D Computer Vision", image: "Shriram Damodaran.jpg", linkedin: "" },
-				{ name: "Wang Luoxin", role: "MSc", research: "Multimodal Signal Processing", image: "Wang Luoxin.jpg", linkedin: "https://www.linkedin.com/in/luoxin-wang-bb2a53252" }
+				{ name: "Wang Luoxin", role: "MSc", research: "Multimodal Signal Processing", image: "Wang Luoxin.jpg", linkedin: "https://www.linkedin.com/in/luoxin-wang-bb2a53252" },
+				{ name: "Xu Tianyi", role: "MSc", research: "Embodied AI, Multimodal Learning", image: "XU TIANYI.jpg", linkedin: "" }
 			],
-			visiting: [
-				{ name: "Jongsung Lee", role: "Visiting PhD Student", research: "3D Scene Understanding, 360 Image-based Vision", image: "Jongsung Lee.jpg", linkedin: "" }
-			],
-			fellows: [
-				{ name: "Liu Mohan", role: "Research Associate", research: "Embodied AI, Robot Learning, Multimodal Learning", image: "Liu Mohan.jpg", linkedin: "https://www.linkedin.com/in/mohan%EF%BC%88lester%EF%BC%89-liu-a26a5a286/" },
-				{ name: "Namai", role: "Research Fellow", research: "PINN integration with RL and algorithm development", image: "Namai.jpeg", linkedin: "https://www.linkedin.com/in/namaichandra/" },
-				{ name: "Gu Zhihao", role: "Research Fellow", research: "Vision for Robotics, Computer Vision", image: "Gu Zhihao.jpg", linkedin: "" }
+			interns: [
+				{ name: "Namai", role: "Research Intern", research: "PINN integration with RL and algorithm development", image: "Namai.jpeg", linkedin: "https://www.linkedin.com/in/namaichandra/" }
 			]
 		};
 
@@ -80,34 +109,34 @@
 			const container = document.getElementById('team-members-container');
 			let html = '';
 			
-			// PhD Students
-			if (peopleData.phd.length > 0) {
+			// Research Staff (Postdocs and RAs)
+			if (peopleData.staff && peopleData.staff.length > 0) {
+				html += '<div class="col-md-12"><h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">Research Staff</h3></div>';
+				peopleData.staff.forEach(person => {
+					html += createPersonCard(person);
+				});
+			}
+			
+			// PhD Students (including visiting)
+			if (peopleData.phd && peopleData.phd.length > 0) {
 				html += '<div class="col-md-12"><h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">PhD Students</h3></div>';
 				peopleData.phd.forEach(person => {
 					html += createPersonCard(person);
 				});
 			}
 			
-			// MSc Students
-			if (peopleData.msc.length > 0) {
-				html += '<div class="col-md-12"><h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">MSc Students</h3></div>';
+			// Master Students
+			if (peopleData.msc && peopleData.msc.length > 0) {
+				html += '<div class="col-md-12"><h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">Master Students</h3></div>';
 				peopleData.msc.forEach(person => {
 					html += createPersonCard(person);
 				});
 			}
 			
-			// Visiting PhD Students
-			if (peopleData.visiting.length > 0) {
-				html += '<div class="col-md-12"><h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">Visiting PhD Students</h3></div>';
-				peopleData.visiting.forEach(person => {
-					html += createPersonCard(person);
-				});
-			}
-			
-			// Research Associates & Fellows
-			if (peopleData.fellows.length > 0) {
-				html += '<div class="col-md-12"><h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">Research Associates & Fellows</h3></div>';
-				peopleData.fellows.forEach(person => {
+			// Interns
+			if (peopleData.interns && peopleData.interns.length > 0) {
+				html += '<div class="col-md-12"><h3 style="margin-top: 30px; margin-bottom: 20px; color: #333;">Interns</h3></div>';
+				peopleData.interns.forEach(person => {
 					html += createPersonCard(person);
 				});
 			}
@@ -122,7 +151,10 @@
 			
 			return `
 				<div class="col-md-4">
-					<div class="team-member" ${clickHandler} style="background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); border-radius: 12px; padding: 30px 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; text-align: center; border: 1px solid #e8e8e8; ${cursorStyle}" onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)';" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 10px rgba(0,0,0,0.08)';">
+					<div class="team-member" ${clickHandler}
+						style="background: linear-gradient(to bottom, #ffffff 0%, #f9f9f9 100%); border-radius: 12px; padding: 30px 20px; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); transition: all 0.3s ease; text-align: center; border: 1px solid #e8e8e8; ${cursorStyle}"
+						onmouseover="this.style.transform='translateY(-8px)'; this.style.boxShadow='0 8px 20px rgba(0,0,0,0.12)';"
+						onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 2px 10px rgba(0,0,0,0.08)';">
 						<div style="width: 160px; height: 160px; margin: 0 auto 20px; overflow: hidden; border-radius: 50%; box-shadow: 0 4px 12px rgba(0,0,0,0.1); position: relative;">
 							<img src="assets/People_Images/${person.image}" alt="${person.name}" style="width: 100%; height: 100%; object-fit: cover; object-position: center top;">
 						</div>
@@ -170,8 +202,11 @@
 			<div class="col-md-12">
 				<h2 style="border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 30px;">Team Members</h2>
 			</div>
-			<div id="team-members-container" class="row">
-				<!-- Team members will be automatically generated here -->
+
+			<div class="col-md-12">
+				<div id="team-members-container" class="row">
+					<!-- Team members will be automatically generated here -->
+				</div>
 			</div>
 		</div>
 
@@ -216,6 +251,7 @@
 			</div>
 		</div>
 	</footer>
+
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="assets/js/custom.js"></script>
